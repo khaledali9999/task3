@@ -7,7 +7,7 @@ using task3.Models;
 
 namespace task3
 {
-    internal class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
