@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace task3.Models
 {
-    internal class Resource
+    public class Resource
     {
         public int ResourceId { get; set; }
 
