@@ -1,0 +1,36 @@
+ال  index بيخلي الاستعلامات أسرع على الأعمدة اللي بيستخدمها SQL كتير
+
+data annotation:
+[Index(nameof(Email), IsUnique = true)]
+public class Customer { public string Email { get; set; } }
+
+Fluent API:
+modelBuilder.Entity<Customer>()
+    .HasIndex(c => c.Email)
+    .IsUnique();
+
+
+    الـ Sequence بيولّد أرقام متتالية ممكن نستخدمها في أكتر من جدول
+
+    modelBuilder.HasSequence<int>("OrderNumbers")
+    .StartsAt(1000)
+    .IncrementsBy(5);
+
+modelBuilder.Entity<Order>()
+    .Property(o => o.OrderNo)
+    .HasDefaultValueSql("NEXT VALUE FOR OrderNumbers");
+
+
+    في EF Core عندنا 3 طرق نرسم الوراثة في قاعدة البيانات
+
+TPH (Table Per Hierarchy) – الافتراضي
+
+كل الكلاسات بتتخزن في جدول واحد، وEF يضيف عمود Discriminator يحدد النوع
+
+TPT (Table Per Type):
+
+كل كلاس ليه جدول منفصل، والـ Child بيرتبط بالـ Parent
+
+TPC (Table Per Concrete Class):
+
+كل كلاس Child ليه جدول منفصل يحتوي كل الأعمدة المطلوبة (مفيش جدول للـ Parent)
