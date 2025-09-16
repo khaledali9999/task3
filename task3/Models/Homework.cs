@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace task3.Models
 {
-    internal class Homework
+    public class Homework
     {
         public int HomeworkId { get; set; }
 
